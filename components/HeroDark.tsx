@@ -12,9 +12,9 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const navLinks = [
   { label: "Services", href: "#services" },
+  { label: "Réalisations", href: "#realisations" },
   { label: "Méthode", href: "#methode" },
   { label: "Tarifs", href: "#tarifs" },
-  { label: "FAQ", href: "#faq" },
 ];
 
 /** Horloge locale, montée côté client uniquement. */

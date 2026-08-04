@@ -7,6 +7,7 @@ import { BOOKING_URL } from "@/components/Nav";
 
 const links = [
   { label: "Services", href: "#services" },
+  { label: "Réalisations", href: "#realisations" },
   { label: "Méthode", href: "#methode" },
   { label: "Tarifs", href: "#tarifs" },
   { label: "FAQ", href: "#faq" },
