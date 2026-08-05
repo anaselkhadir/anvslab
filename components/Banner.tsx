@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { BOOKING_URL } from "@/components/Nav";
@@ -13,9 +14,9 @@ export function Banner() {
     <div className="relative z-[60] bg-signal px-12 py-2.5 text-center">
       <p className="text-sm font-medium text-white">
         Nouveau : votre site refait en 2 semaines,{" "}
-        <a href={BOOKING_URL} className="underline underline-offset-2">
+        <Link href={BOOKING_URL} className="underline underline-offset-2">
           forfait dès 1 000€
-        </a>
+        </Link>
       </p>
       <button
         aria-label="Fermer l'annonce"

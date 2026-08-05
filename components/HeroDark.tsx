@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { AsciiField } from "@/components/AsciiField";
 import { BOOKING_URL } from "@/components/Nav";
+import { asset } from "@/lib/base";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -81,7 +82,7 @@ export function HeroDark() {
         </ul>
         <div className="md:text-center">
           <Image
-            src="/anvslab-logo-white.png"
+            src={asset("/anvslab-logo-white.png")}
             alt="ANVSLAB"
             width={112}
             height={35}
@@ -90,7 +91,7 @@ export function HeroDark() {
           />
         </div>
         <div className="flex items-center justify-end gap-3">
-          <a
+          <Link
             href={BOOKING_URL}
             className="group flex items-center gap-3 text-[15px] font-medium text-snow"
           >
@@ -98,7 +99,7 @@ export function HeroDark() {
             <span className="flex size-10 items-center justify-center rounded-lg bg-white text-ink transition-colors duration-300 group-hover:bg-signal group-hover:text-white">
               <ArrowUpRight className="size-4.5" strokeWidth={2} />
             </span>
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -130,7 +131,7 @@ export function HeroDark() {
         </Enter>
 
         <Enter delay={0.75} className="mt-9">
-          <a href={BOOKING_URL} className="group inline-flex items-stretch">
+          <Link href={BOOKING_URL} className="group inline-flex items-stretch">
             <span className="flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-normal text-ink transition-colors duration-300 group-hover:bg-signal group-hover:text-white">
               Réserver un appel
             </span>
@@ -143,7 +144,7 @@ export function HeroDark() {
                 strokeWidth={2}
               />
             </span>
-          </a>
+          </Link>
         </Enter>
 
         <Enter

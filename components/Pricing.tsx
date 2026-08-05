@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { BOOKING_URL, PillArrow } from "@/components/Nav";
@@ -57,7 +58,7 @@ const tiers: Tier[] = [
 
 function CardCta({ dark }: { dark?: boolean }) {
   return (
-    <a href={BOOKING_URL} className="group inline-flex items-stretch">
+    <Link href={BOOKING_URL} className="group inline-flex items-stretch">
       <span className="flex items-center rounded-full bg-white px-5 py-3 text-[15px] font-medium text-ink transition-colors duration-300 group-hover:bg-signal group-hover:text-white">
         Réserver votre appel
       </span>
@@ -72,7 +73,7 @@ function CardCta({ dark }: { dark?: boolean }) {
           strokeWidth={2.2}
         />
       </span>
-    </a>
+    </Link>
   );
 }
 

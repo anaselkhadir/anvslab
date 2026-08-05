@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
 import { Reveal } from "@/components/Reveal";
+import { asset } from "@/lib/base";
 
 export const metadata: Metadata = {
   title: "Réserver un appel | ANVSLAB",
@@ -27,7 +28,7 @@ export default function RendezVousPage() {
       <header className="mx-auto flex h-[76px] w-full max-w-[1760px] shrink-0 items-center justify-between px-6 md:px-10">
         <Link href="/" aria-label="ANVSLAB, retour à l'accueil">
           <Image
-            src="/anvslab-logo-black.png"
+            src={asset("/anvslab-logo-black.png")}
             alt="ANVSLAB"
             width={118}
             height={36}

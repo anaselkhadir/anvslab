@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { BOOKING_URL } from "@/components/Nav";
+import { asset } from "@/lib/base";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -32,7 +33,7 @@ export function Footer() {
 
         <div className="hidden items-start justify-center md:flex">
           <Image
-            src="/anvslab-owl-white.png"
+            src={asset("/anvslab-owl-white.png")}
             alt=""
             width={30}
             height={40}
@@ -45,7 +46,7 @@ export function Footer() {
           <p className="text-sm text-white/90">
             &copy; {new Date().getFullYear()} ANVSLAB
           </p>
-          <a href={BOOKING_URL} className="group inline-flex items-stretch">
+          <Link href={BOOKING_URL} className="group inline-flex items-stretch">
             <span className="flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-white">
               Réserver un appel
             </span>
@@ -58,7 +59,7 @@ export function Footer() {
                 strokeWidth={2.2}
               />
             </span>
-          </a>
+          </Link>
           <a
             href="mailto:hello@anvslab.com"
             className="text-sm text-white/90 transition-opacity duration-300 hover:opacity-70"

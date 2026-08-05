@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { AsciiField } from "@/components/AsciiField";
+import { asset } from "@/lib/base";
 
 /** Écran d'entrée : logo centré sur le champ ASCII, puis fondu vers le site. */
 export function Preloader() {
@@ -43,7 +44,7 @@ export function Preloader() {
             className="relative"
           >
             <Image
-              src="/anvslab-logo-white.png"
+              src={asset("/anvslab-logo-white.png")}
               alt=""
               width={150}
               height={46}
