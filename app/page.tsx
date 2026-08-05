@@ -6,7 +6,6 @@ import { HeroDark } from "@/components/HeroDark";
 import { Hero } from "@/components/Hero";
 import { Method } from "@/components/Method";
 import { Pillars } from "@/components/Pillars";
-import { Work } from "@/components/Work";
 import { Team } from "@/components/Team";
 import { Pricing } from "@/components/Pricing";
 import { Faq } from "@/components/Faq";
@@ -24,7 +23,6 @@ export default function Home() {
         <Hero />
         <Method />
         <Pillars />
-        <Work />
         <Team />
         <Pricing />
         <Faq />
