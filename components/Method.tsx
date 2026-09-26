@@ -27,7 +27,7 @@ const steps = [
   {
     num: "04",
     title: "On reste à bord",
-    desc: "Support et maintenance 24 mois inclus. Rapports de positions, chiffres, améliorations : l'avance prise ne se referme pas.",
+    desc: "Support technique 12 mois et accompagnement organique 6 mois inclus. Rapports de positions, chiffres, améliorations : l'avance prise ne se referme pas.",
   },
 ];
 
