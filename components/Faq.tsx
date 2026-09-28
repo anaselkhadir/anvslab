@@ -16,16 +16,16 @@ const faqs = [
     a: "Oui : il est inscrit dans la proposition, sur des recherches définies ensemble pour votre métier et votre zone. Les premiers effets se voient en 2 à 4 mois, avec un rapport de positions chaque mois.",
   },
   {
-    q: "Pourquoi des abonnements sur certains services ?",
-    a: "L'assistant IA, l'agent téléphonique et l'hébergement consomment des serveurs et de l'intelligence artificielle en continu. On les facture au juste prix, uniquement si vous les activez, et c'est résiliable à tout moment.",
+    q: "Pourquoi un abonnement après six mois ?",
+    a: "Le référencement n'est pas un état, c'est une position à tenir : vos concurrents continuent d'avancer. Les six premiers mois d'accompagnement sont compris dans le prix. Ensuite, poursuivre la progression est un abonnement dès 100€ par mois, sans engagement de durée. Si vous arrêtez, le site reste en ligne et vous gardez vos positions acquises.",
   },
   {
     q: "C'est quoi, un agent téléphonique IA ?",
     a: "Une voix naturelle qui décroche quand vous ne pouvez pas : elle renseigne, qualifie la demande, prend le rendez-vous et vous envoie le résumé. Vos appels manqués deviennent des clients.",
   },
   {
-    q: "Que se passe-t-il après les 24 mois ?",
-    a: "Le site et les systèmes vous appartiennent entièrement : code, contenus, données. Vous continuez avec nous si vous le souhaitez, et les services connectés restent actifs tant que vous les utilisez.",
+    q: "Que se passe-t-il au terme du support de douze mois ?",
+    a: "Le site et les systèmes vous appartiennent entièrement : code, contenus, données, noms de domaine et comptes. Rien ne s'éteint et rien ne vous retient : vous continuez avec nous si vous le souhaitez, ou vous repartez avec l'ensemble, documentation comprise.",
   },
 ];
 

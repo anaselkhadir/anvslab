@@ -15,43 +15,43 @@ type Tier = {
 
 const tiers: Tier[] = [
   {
-    tag: "PRÉSENCE",
-    price: "1 000€",
-    payment: "800€ à la signature, puis 200€ répartis sur 24 mois.",
+    tag: "INITIAL",
+    price: "799€",
+    payment: "Un seul paiement. Pour exister correctement en ligne et commencer à être trouvé.",
     rows: [
-      "Site refait à neuf, jusqu'à 5 pages",
-      "Textes réécrits par des professionnels",
-      "SEO et fiche Google Maps",
-      "Templates email à vos couleurs",
-      "Support et maintenance 24 mois",
-      "Services connectés en option, dès 29€/mois",
+      "Site sur mesure, rapide sur mobile",
+      "Textes rédigés pour vous faire trouver",
+      "Référencement Google et fiche Maps",
+      "Messages du site et WhatsApp réunis",
+      "Confirmations et rappels automatiques",
+      "Rapport mensuel commenté",
     ],
   },
   {
-    tag: "CROISSANCE",
-    price: "1 300€",
-    payment: "Un seul paiement, support et maintenance 24 mois inclus.",
+    tag: "ÉQUILIBRE",
+    price: "1 499€",
+    payment: "Un seul paiement. Pour transformer la visibilité acquise en rendez-vous mesurés.",
     dark: true,
     rows: [
-      "Tout le pack Présence",
-      "Tableau de bord de votre activité",
-      "Assistant IA : site, WhatsApp, réseaux",
-      "Rappels, relances et emails automatiques",
-      "2 automatisations métier au choix",
-      "Services connectés : 59€/mois",
+      "Tout le pack Initial",
+      "Pages dédiées par service et par ville",
+      "Instagram, Facebook et Messenger raccordés",
+      "Tableau de bord actualisé chaque jour",
+      "Campagnes d'acquisition pilotées",
+      "Point mensuel avec votre référent",
     ],
   },
   {
-    tag: "SIGNATURE",
-    price: "dès 5 900€",
-    payment: "Sur devis après audit. 60% à la signature, 40% à la livraison.",
+    tag: "INTENSE",
+    price: "2 999€",
+    payment: "Un seul paiement, périmètre calé après audit. Pour prendre la première place et la tenir.",
     rows: [
-      "Tout le pack Croissance",
-      "Agent téléphonique IA",
-      "Pilotage financier automatisé",
-      "SEO et visibilité IA niveau ingénieur",
-      "Refonte large : site, réseaux, supports",
-      "Services connectés : 129€/mois",
+      "Tout le pack Équilibre",
+      "Programme de contenus sur douze mois",
+      "Visibilité dans les réponses des IA",
+      "Analyse du comportement et tests A/B",
+      "Acquisition multicanale",
+      "Revue stratégique trimestrielle",
     ],
   },
 ];
@@ -85,8 +85,9 @@ export function Pricing() {
           Pensé pour votre élan, pas pour les contrats.
         </h2>
         <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-fog">
-          Le travail est payé une fois, à un prix de PME. Seuls les services
-          qui tournent en continu ont un abonnement, résiliable à tout moment.
+          Le travail est payé une fois, à un prix de PME. Support technique
+          douze mois et accompagnement six mois sont compris dans les trois
+          formules.
         </p>
         <div className="mt-8">
           <PillArrow href={BOOKING_URL}>Réserver un appel de 15 min</PillArrow>
@@ -153,7 +154,9 @@ export function Pricing() {
           l&apos;état de votre référencement et l&apos;ensemble de votre
           présence en ligne, puis vous recommande la formule la plus adaptée à
           vos objectifs, accompagnée d&apos;un plan d&apos;action précis. Vous
-          décidez ensuite en toute connaissance de cause.
+          décidez ensuite en toute connaissance de cause. Au terme des six mois
+          d&apos;accompagnement, poursuivre la progression est un abonnement
+          mensuel dès 100€, sans engagement de durée — jamais une obligation.
         </p>
       </Reveal>
     </section>
