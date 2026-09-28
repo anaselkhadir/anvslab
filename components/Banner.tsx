@@ -15,7 +15,7 @@ export function Banner() {
       <p className="text-sm font-medium text-white">
         Nouveau : votre site refait en 2 semaines,{" "}
         <Link href={BOOKING_URL} className="underline underline-offset-2">
-          forfait dès 1 000€
+          forfait dès 799€
         </Link>
       </p>
       <button
