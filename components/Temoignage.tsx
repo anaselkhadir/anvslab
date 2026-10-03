@@ -111,8 +111,18 @@ export function Temoignage() {
              le texte ne réapparaissait jamais. L'avis restait invisible.
              Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
              révèle. */
-          <blockquote className="mt-10 md:mt-14">
-            <p className="mx-auto max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink">
+          <blockquote className="mt-8 md:mt-12">
+            {/* Guillemet décoratif. `aria-hidden` car la balise blockquote
+                porte déjà le sens : un lecteur d'écran n'a pas à annoncer un
+                caractère isolé. `leading-[0.6]` évite la grande réserve de
+                blanc que traîne un glyphe de cette taille. */}
+            <p
+              aria-hidden
+              className="text-center text-[56px] leading-[0.6] text-signal md:text-[72px]"
+            >
+              &rdquo;
+            </p>
+            <p className="mx-auto mt-6 max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink md:mt-8">
               {temoignage.citation}
             </p>
           </blockquote>
