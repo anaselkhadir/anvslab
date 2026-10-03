@@ -31,7 +31,7 @@ const temoignage = {
   fonction: "Présidente",
   marque: "MADAMOON",
   logo: "/madamoon-logo.png",
-  photo: null as string | null,
+  photo: "/mouna-elachab.jpg" as string | null,
 };
 
 export function Temoignage() {
@@ -42,20 +42,19 @@ export function Temoignage() {
   if (enAttente && process.env.NODE_ENV !== "development") return null;
 
   return (
-    <section className="mx-auto max-w-[1760px] px-6 py-20 md:px-10 md:py-28">
-      {/* Titre, avis et attribution partagent le même conteneur : les bords
-          gauche et droit se répondent d'un bloc à l'autre. */}
-      <div className="mx-auto max-w-[1100px]">
-        {/* ------------------------------------------------ titre, à gauche */}
-        <Reveal>
-          <h2 className="max-w-[18ch] text-[22px] font-medium leading-[1.18] tracking-tight text-ink md:text-[32px]">
-            Histoires de marques, mots de clients
-          </h2>
-        </Reveal>
+    <section className="mx-auto max-w-[1760px] px-6 pb-20 pt-14 md:px-10 md:pb-28 md:pt-16">
+      {/* Titre dans l'angle haut-gauche de la section, aligné sur la marge de
+          la page — pas sur le conteneur resserré qui porte l'avis. */}
+      <Reveal>
+        <h2 className="max-w-[18ch] text-[22px] font-medium leading-[1.18] tracking-tight text-ink md:text-[32px]">
+          Histoires de marques, mots de clients
+        </h2>
+      </Reveal>
 
+      <div className="mx-auto mt-16 max-w-[1100px] md:mt-24">
         {/* ------------------- attribution : nom à gauche, logo à droite */}
         <Reveal delay={0.08}>
-          <div className="mt-14 flex flex-wrap items-center justify-between gap-6 border-b border-panel-line pb-8 md:mt-20">
+          <div className="flex flex-wrap items-center justify-between gap-6 border-b border-panel-line pb-8">
             <figcaption className="flex items-center gap-4">
               {temoignage.photo ? (
                 <span className="relative size-12 shrink-0 overflow-hidden rounded-full bg-panel">
