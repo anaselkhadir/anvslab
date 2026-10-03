@@ -118,11 +118,11 @@ export function Temoignage() {
                 blanc que traîne un glyphe de cette taille. */}
             <p
               aria-hidden
-              className="text-center text-[56px] leading-[0.6] text-signal md:text-[72px]"
+              className="text-center text-[88px] leading-[0.8] text-signal md:text-[128px]"
             >
-              &rdquo;
+              &ldquo;
             </p>
-            <p className="mx-auto mt-6 max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink md:mt-8">
+            <p className="mx-auto mt-2 max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink md:mt-4">
               {temoignage.citation}
             </p>
           </blockquote>
