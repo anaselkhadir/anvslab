@@ -10,16 +10,23 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 /**
  * Témoignage client.
  *
- * `citation` est vide tant que MADAMOON n'a pas envoyé son avis. Dans ce cas
- * la section ne s'affiche pas sur le site publié — mieux vaut pas de
- * témoignage qu'un témoignage inventé sous le nom d'une personne réelle.
- * En développement, un gabarit apparaît à la place pour juger la mise en page.
+ * Mise en page : le titre de section à gauche, l'avis centré au milieu, puis
+ * une ligne d'attribution — portrait et nom à gauche, logo de la marque à
+ * droite.
  *
- * Pour la mettre en ligne : coller le texte reçu dans `citation`, déposer le
- * portrait dans public/ et renseigner `photo`. Rien d'autre à toucher.
+ * Le portrait n'est pas encore arrivé : tant que `photo` est nul, la pastille
+ * n'est pas rendue en ligne et le nom tient seul. Déposer l'image dans public/
+ * et renseigner `photo` suffit à la faire apparaître.
  */
 const temoignage = {
-  citation: "",
+  // Texte reçu de Mouna, repris mot pour mot. Seules deux normalisations
+  // typographiques : la graphie de la marque et l'espace fine avant le « ! ».
+  citation:
+    "Si vous êtes exigeant et perfectionniste, ANVSLAB est l'agence qu'il vous " +
+    "faut ! J'ai été agréablement surprise non seulement par sa réactivité " +
+    "mais aussi par sa créativité. Que ce soit pour le design du site internet " +
+    "ou pour le référencement, mes attentes ont été comprises et le résultat " +
+    "final a été plus qu'à la hauteur. Je recommande vivement.",
   auteur: "Mouna Elachab",
   fonction: "Présidente",
   marque: "MADAMOON",
@@ -31,12 +38,16 @@ const temoignage = {
 function Etoiles({ note }: { note: number }) {
   const reduce = useReducedMotion();
   return (
-    <div className="flex items-center gap-1.5" role="img" aria-label={`${note} étoiles sur 5`}>
+    <div
+      className="flex items-center justify-center gap-1.5"
+      role="img"
+      aria-label={`${note} étoiles sur 5`}
+    >
       {Array.from({ length: 5 }).map((_, i) => (
         <motion.svg
           key={i}
-          width="19"
-          height="19"
+          width="18"
+          height="18"
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden
@@ -62,86 +73,84 @@ export function Temoignage() {
 
   return (
     <section className="mx-auto max-w-[1760px] px-6 py-20 md:px-10 md:py-28">
-      <div className="grid gap-12 lg:grid-cols-[280px_1fr] lg:gap-20">
-        {/* ------------------------------------------------- colonne gauche */}
+      {/* ------------------------------------------------- titre, à gauche */}
+      <Reveal>
+        <h2 className="max-w-[20ch] text-4xl font-medium leading-[1.08] tracking-tight text-ink md:text-6xl">
+          Histoires de marques, mots de clients
+        </h2>
+      </Reveal>
+
+      {/* ------------------------------------------------- l'avis, au centre */}
+      <div className="mx-auto mt-16 max-w-[1100px] md:mt-24">
         <Reveal>
-          <figure className="flex flex-col">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-panel">
-              {temoignage.photo ? (
-                <Image
-                  src={asset(temoignage.photo)}
-                  alt={`${temoignage.auteur}, ${temoignage.fonction} de ${temoignage.marque}`}
-                  fill
-                  sizes="280px"
-                  className="object-cover"
-                />
-              ) : (
-                <span className="flex h-full items-center justify-center font-mono text-[11px] uppercase tracking-[0.14em] text-dim">
-                  Portrait à venir
-                </span>
-              )}
-            </div>
-
-            <div className="mt-6">
-              <Etoiles note={temoignage.note} />
-            </div>
-
-            <figcaption className="mt-5">
-              <p className="text-[17px] font-medium leading-tight text-ink">
-                {temoignage.auteur}
-              </p>
-              <p className="mt-1 text-[15px] text-fog">{temoignage.fonction}</p>
-              <Image
-                src={asset(temoignage.logo)}
-                alt={temoignage.marque}
-                width={513}
-                height={56}
-                className="mt-5 h-[18px] w-auto"
-              />
-            </figcaption>
-          </figure>
+          <Etoiles note={temoignage.note} />
         </Reveal>
 
-        {/* -------------------------------------------------- colonne droite */}
-        <div className="flex flex-col justify-center">
-          <Reveal>
-            <p className="font-mono text-[13px] uppercase tracking-[0.14em] text-fog">
-              Ce qu&apos;ils disent
+        {enAttente ? (
+          <p className="mx-auto mt-10 max-w-[40ch] text-center text-[clamp(20px,2.2vw,30px)] font-medium leading-[1.25] tracking-tight text-dim">
+            Emplacement réservé au témoignage de {temoignage.auteur}. Masqué sur
+            le site publié tant que l&apos;avis n&apos;est pas arrivé.
+          </p>
+        ) : (
+          <blockquote className="mt-10">
+            <p className="mx-auto max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink">
+              {temoignage.citation.split(" ").map((mot, i) => (
+                <span key={i} className="inline-block overflow-hidden pb-1 align-top">
+                  <motion.span
+                    className="inline-block"
+                    initial={reduce ? false : { y: "110%" }}
+                    whileInView={{ y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, delay: 0.2 + i * 0.012, ease: EASE }}
+                  >
+                    {mot}&nbsp;
+                  </motion.span>
+                </span>
+              ))}
             </p>
-          </Reveal>
+          </blockquote>
+        )}
 
-          {enAttente ? (
-            <Reveal delay={0.1}>
-              <div className="mt-8 rounded-2xl border border-dashed border-panel-line px-8 py-14">
-                <p className="max-w-[40ch] text-[clamp(22px,2.4vw,34px)] font-medium leading-[1.2] tracking-tight text-dim">
-                  Emplacement réservé au témoignage de {temoignage.auteur}.
-                </p>
-                <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-dim">
-                  Visible uniquement en développement : la section reste masquée
-                  sur le site publié tant que l&apos;avis n&apos;est pas arrivé.
-                </p>
-              </div>
-            </Reveal>
-          ) : (
-            <blockquote className="mt-8">
-              <p className="max-w-[26ch] text-[clamp(28px,3.4vw,56px)] font-medium leading-[1.12] tracking-tight text-ink">
-                {temoignage.citation.split(" ").map((mot, i) => (
-                  <span key={i} className="inline-block overflow-hidden pb-1 align-top">
-                    <motion.span
-                      className="inline-block"
-                      initial={reduce ? false : { y: "110%" }}
-                      whileInView={{ y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.8, delay: 0.2 + i * 0.018, ease: EASE }}
-                    >
-                      {mot}&nbsp;
-                    </motion.span>
+        {/* ------------------------------ attribution : nom à gauche, logo à droite */}
+        <Reveal delay={0.15}>
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-6 border-t border-panel-line pt-8 md:mt-20">
+            <figcaption className="flex items-center gap-4">
+              {temoignage.photo ? (
+                <span className="relative size-12 shrink-0 overflow-hidden rounded-full bg-panel">
+                  <Image
+                    src={asset(temoignage.photo)}
+                    alt={`${temoignage.auteur}, ${temoignage.fonction} de ${temoignage.marque}`}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </span>
+              ) : (
+                process.env.NODE_ENV === "development" && (
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full border border-dashed border-panel-line font-mono text-[9px] uppercase tracking-[0.1em] text-dim">
+                    photo
                   </span>
-                ))}
-              </p>
-            </blockquote>
-          )}
-        </div>
+                )
+              )}
+              <span>
+                <span className="block text-[17px] font-bold leading-tight text-ink">
+                  {temoignage.auteur}
+                </span>
+                <span className="mt-0.5 block text-[15px] text-fog">
+                  {temoignage.fonction}
+                </span>
+              </span>
+            </figcaption>
+
+            <Image
+              src={asset(temoignage.logo)}
+              alt={temoignage.marque}
+              width={513}
+              height={56}
+              className="h-[20px] w-auto"
+            />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
