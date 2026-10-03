@@ -1,11 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "@/components/Reveal";
 import { asset } from "@/lib/base";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
  * Témoignage client.
@@ -14,9 +11,8 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * portrait et nom à gauche, logo de la marque à droite — et l'avis centré
  * en dessous.
  *
- * Le portrait n'est pas encore arrivé : tant que `photo` est nul, la pastille
- * n'est pas rendue en ligne et le nom tient seul. Déposer l'image dans public/
- * et renseigner `photo` suffit à la faire apparaître.
+ * La ligne d'attribution tient sur une seule ligne jusque sur téléphone : les
+ * tailles y sont réduites et le logo ne se comprime pas.
  */
 const temoignage = {
   // Texte reçu de Mouna, repris mot pour mot. Seules deux normalisations
@@ -35,7 +31,6 @@ const temoignage = {
 };
 
 export function Temoignage() {
-  const reduce = useReducedMotion();
   const enAttente = temoignage.citation.trim() === "";
 
   // Rien ne part en ligne tant que l'avis n'est pas arrivé.
@@ -54,30 +49,33 @@ export function Temoignage() {
       <div className="mx-auto mt-16 max-w-[1100px] md:mt-24">
         {/* ------------------- attribution : nom à gauche, logo à droite */}
         <Reveal delay={0.08}>
-          <div className="flex flex-wrap items-center justify-between gap-6 border-b border-panel-line pb-8">
-            <figcaption className="flex items-center gap-4">
+          {/* Une seule ligne, y compris sur téléphone : pas de `flex-wrap`, et
+              des tailles réduites en dessous de md pour que le nom et le logo
+              tiennent côte à côte sans se toucher. */}
+          <div className="flex items-center justify-between gap-5 border-b border-panel-line pb-6 md:gap-6 md:pb-8">
+            <figcaption className="flex min-w-0 items-center gap-3 md:gap-4">
               {temoignage.photo ? (
-                <span className="relative size-12 shrink-0 overflow-hidden rounded-full bg-panel">
+                <span className="relative size-10 shrink-0 overflow-hidden rounded-full bg-panel md:size-12">
                   <Image
                     src={asset(temoignage.photo)}
                     alt={`${temoignage.auteur}, ${temoignage.fonction} de ${temoignage.marque}`}
                     fill
-                    sizes="48px"
+                    sizes="(min-width: 768px) 48px, 40px"
                     className="object-cover"
                   />
                 </span>
               ) : (
                 process.env.NODE_ENV === "development" && (
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full border border-dashed border-panel-line font-mono text-[9px] uppercase tracking-[0.1em] text-dim">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-dashed border-panel-line font-mono text-[9px] uppercase tracking-[0.1em] text-dim md:size-12">
                     photo
                   </span>
                 )
               )}
-              <span>
-                <span className="block text-[17px] font-bold leading-tight text-ink">
+              <span className="min-w-0">
+                <span className="block truncate text-[15px] font-bold leading-tight text-ink md:text-[17px]">
                   {temoignage.auteur}
                 </span>
-                <span className="mt-0.5 block text-[15px] text-fog">
+                <span className="mt-0.5 block truncate text-[13px] text-fog md:text-[15px]">
                   {temoignage.fonction}
                 </span>
               </span>
@@ -88,7 +86,7 @@ export function Temoignage() {
               alt={temoignage.marque}
               width={513}
               height={56}
-              className="h-[20px] w-auto"
+              className="h-[14px] w-auto shrink-0 md:h-[20px]"
             />
           </div>
         </Reveal>
@@ -100,23 +98,21 @@ export function Temoignage() {
             le site publié tant que l&apos;avis n&apos;est pas arrivé.
           </p>
         ) : (
-          <blockquote className="mt-14 md:mt-16">
-            <p className="mx-auto max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink">
-              {temoignage.citation.split(" ").map((mot, i) => (
-                <span key={i} className="inline-block overflow-hidden pb-1 align-top">
-                  <motion.span
-                    className="inline-block"
-                    initial={reduce ? false : { y: "110%" }}
-                    whileInView={{ y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: 0.2 + i * 0.012, ease: EASE }}
-                  >
-                    {mot}&nbsp;
-                  </motion.span>
-                </span>
-              ))}
-            </p>
-          </blockquote>
+          /* Révélation d'un seul bloc, volontairement.
+             La version précédente masquait chaque mot derrière un parent en
+             `overflow-hidden` puis le décalait de 110 % vers le bas. Le mot se
+             retrouvait entièrement rogné : son intersection avec l'écran valait
+             zéro, le déclencheur `whileInView` n'était donc jamais satisfait et
+             le texte ne réapparaissait jamais. L'avis restait invisible.
+             Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
+             révèle. */
+          <Reveal delay={0.12}>
+            <blockquote className="mt-14 md:mt-16">
+              <p className="mx-auto max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink">
+                {temoignage.citation}
+              </p>
+            </blockquote>
+          </Reveal>
         )}
       </div>
     </section>
