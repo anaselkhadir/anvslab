@@ -73,9 +73,11 @@ export function Temoignage() {
 
   return (
     <section className="mx-auto max-w-[1760px] px-6 py-20 md:px-10 md:py-28">
-      {/* ------------------------------------------------- titre, à gauche */}
-      <Reveal>
-        <h2 className="max-w-[20ch] text-4xl font-medium leading-[1.08] tracking-tight text-ink md:text-6xl">
+      {/* --------------------------------------------- titre, calé à droite.
+          Même conteneur que l'avis et l'attribution : le titre et le logo
+          partagent ainsi exactement le même bord droit. */}
+      <Reveal className="mx-auto max-w-[1100px]">
+        <h2 className="ml-auto max-w-[18ch] text-right text-[22px] font-medium leading-[1.18] tracking-tight text-ink md:text-[32px]">
           Histoires de marques, mots de clients
         </h2>
       </Reveal>
