@@ -3,6 +3,7 @@ import { Preloader } from "@/components/Preloader";
 import { Banner } from "@/components/Banner";
 import { FloatingCta } from "@/components/Nav";
 import { HeroDark } from "@/components/HeroDark";
+import { Temoignage } from "@/components/Temoignage";
 import { Hero } from "@/components/Hero";
 import { Method } from "@/components/Method";
 import { Pillars } from "@/components/Pillars";
@@ -20,6 +21,7 @@ export default function Home() {
       <FloatingCta />
       <main>
         <HeroDark />
+        <Temoignage />
         <Hero />
         <Method />
         <Pillars />
