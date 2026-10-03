@@ -111,20 +111,27 @@ export function Temoignage() {
              le texte ne réapparaissait jamais. L'avis restait invisible.
              Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
              révèle. */
-          <blockquote className="mt-8 md:mt-12">
-            {/* Guillemet décoratif. `aria-hidden` car la balise blockquote
-                porte déjà le sens : un lecteur d'écran n'a pas à annoncer un
-                caractère isolé. `leading-[0.6]` évite la grande réserve de
-                blanc que traîne un glyphe de cette taille. */}
-            <p
-              aria-hidden
-              className="text-center text-[88px] leading-[0.8] text-signal md:text-[128px]"
-            >
-              &ldquo;
-            </p>
-            <p className="mx-auto mt-2 max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink md:mt-4">
-              {temoignage.citation}
-            </p>
+          <blockquote className="mt-24 md:mt-16">
+            {/* Guillemet décoratif suspendu dans la marge, à hauteur de la
+                première ligne. Sur téléphone le texte occupe toute la largeur :
+                il n'y a plus de marge où pendre, le guillemet passe au-dessus.
+                `aria-hidden` car la balise blockquote porte déjà le sens — un
+                lecteur d'écran n'a pas à annoncer un caractère isolé.
+
+                La taille de police est portée par le conteneur : sans elle,
+                `34ch` se calculerait sur 16px et la colonne de texte serait
+                deux fois trop étroite. */}
+            <div className="relative mx-auto max-w-[34ch] text-[clamp(22px,2.6vw,40px)]">
+              <span
+                aria-hidden
+                className="absolute -top-[76px] left-0 text-[96px] leading-none text-signal md:-left-[76px] md:-top-8 md:text-[160px]"
+              >
+                &ldquo;
+              </span>
+              <p className="text-center font-medium leading-[1.24] tracking-tight text-ink">
+                {temoignage.citation}
+              </p>
+            </div>
           </blockquote>
         )}
       </Reveal>
