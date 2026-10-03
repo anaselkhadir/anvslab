@@ -49,54 +49,56 @@ export function Temoignage() {
         </h2>
       </Reveal>
 
-      <div className="mx-auto mt-16 max-w-[1100px] md:mt-24">
-        {/* ------------------- attribution : nom à gauche, logo à droite */}
-        <Reveal delay={0.08}>
-          {/* Une seule ligne, y compris sur téléphone : pas de `flex-wrap`, et
-              des tailles réduites en dessous de md pour que le nom et le logo
-              tiennent côte à côte sans se toucher. */}
-          <div className="flex items-center justify-between gap-5 border-b border-panel-line pb-6 md:gap-6 md:pb-8">
-            <figcaption className="flex min-w-0 items-center gap-3 md:gap-4">
-              {temoignage.photo ? (
-                <span className="relative size-10 shrink-0 overflow-hidden rounded-full bg-panel md:size-12">
-                  <Image
-                    src={asset(temoignage.photo)}
-                    alt={`${temoignage.auteur}, ${temoignage.fonction} de ${temoignage.marque}`}
-                    fill
-                    sizes="(min-width: 768px) 48px, 40px"
-                    className="object-cover"
-                  />
-                </span>
-              ) : (
-                process.env.NODE_ENV === "development" && (
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-dashed border-panel-line font-mono text-[9px] uppercase tracking-[0.1em] text-dim md:size-12">
-                    photo
-                  </span>
-                )
-              )}
-              <span className="min-w-0">
-                <span className="block truncate text-[15px] font-bold leading-tight text-ink md:text-[17px]">
-                  {temoignage.auteur}
-                </span>
-                <span className="mt-0.5 block truncate text-[13px] text-fog md:text-[15px]">
-                  {temoignage.fonction}
-                </span>
+      {/* Carte grise, mêmes valeurs que les cartes du reste du site :
+          fond `panel` (#f4f4f4) et arrondi `rounded-2xl`. */}
+      <Reveal
+        delay={0.08}
+        className="mx-auto mt-14 max-w-[1100px] rounded-2xl bg-panel p-5 sm:p-6 md:mt-20 md:p-12"
+      >
+        {/* -------- attribution : nom à gauche, logo à droite. Une seule
+            ligne y compris sur téléphone — pas de `flex-wrap`, et des tailles
+            réduites en dessous de md pour qu'ils tiennent côte à côte. */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-panel-line pb-6 md:gap-6 md:pb-8">
+          <figcaption className="flex items-center gap-2.5 md:gap-4">
+            {temoignage.photo ? (
+              <span className="relative size-10 shrink-0 overflow-hidden rounded-full bg-snow md:size-12">
+                <Image
+                  src={asset(temoignage.photo)}
+                  alt={`${temoignage.auteur}, ${temoignage.fonction} de ${temoignage.marque}`}
+                  fill
+                  sizes="(min-width: 768px) 48px, 40px"
+                  className="object-cover"
+                />
               </span>
-            </figcaption>
+            ) : (
+              process.env.NODE_ENV === "development" && (
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-dashed border-panel-line font-mono text-[9px] uppercase tracking-[0.1em] text-dim md:size-12">
+                  photo
+                </span>
+              )
+            )}
+            <span>
+              <span className="block whitespace-nowrap text-[14px] font-bold leading-tight text-ink md:text-[17px]">
+                {temoignage.auteur}
+              </span>
+              <span className="mt-0.5 block whitespace-nowrap text-[13px] text-fog md:text-[15px]">
+                {temoignage.fonction}
+              </span>
+            </span>
+          </figcaption>
 
-            <Image
-              src={asset(temoignage.logo)}
-              alt={temoignage.marque}
-              width={513}
-              height={56}
-              className="h-[14px] w-auto shrink-0 md:h-[20px]"
-            />
-          </div>
-        </Reveal>
+          <Image
+            src={asset(temoignage.logo)}
+            alt={temoignage.marque}
+            width={513}
+            height={56}
+            className="h-[10px] w-auto shrink-0 sm:h-[14px] md:h-[20px]"
+          />
+        </div>
 
         {/* ------------------------------------------------- l'avis, centré */}
         {enAttente ? (
-          <p className="mx-auto mt-14 max-w-[40ch] text-center text-[clamp(20px,2.2vw,30px)] font-medium leading-[1.25] tracking-tight text-dim">
+          <p className="mx-auto mt-10 max-w-[40ch] text-center text-[clamp(20px,2.2vw,30px)] font-medium leading-[1.25] tracking-tight text-dim md:mt-14">
             Emplacement réservé au témoignage de {temoignage.auteur}. Masqué sur
             le site publié tant que l&apos;avis n&apos;est pas arrivé.
           </p>
@@ -109,15 +111,13 @@ export function Temoignage() {
              le texte ne réapparaissait jamais. L'avis restait invisible.
              Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
              révèle. */
-          <Reveal delay={0.12}>
-            <blockquote className="mt-14 md:mt-16">
-              <p className="mx-auto max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink">
-                {temoignage.citation}
-              </p>
-            </blockquote>
-          </Reveal>
+          <blockquote className="mt-10 md:mt-14">
+            <p className="mx-auto max-w-[34ch] text-center text-[clamp(22px,2.6vw,40px)] font-medium leading-[1.24] tracking-tight text-ink">
+              {temoignage.citation}
+            </p>
+          </blockquote>
         )}
-      </div>
+      </Reveal>
     </section>
   );
 }
