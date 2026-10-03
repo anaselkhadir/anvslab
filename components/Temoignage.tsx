@@ -41,8 +41,11 @@ export function Temoignage() {
       {/* Titre dans l'angle haut-gauche de la section, aligné sur la marge de
           la page — pas sur le conteneur resserré qui porte l'avis. */}
       <Reveal>
-        <h2 className="max-w-[18ch] text-[22px] font-medium leading-[1.18] tracking-tight text-ink md:text-[32px]">
-          Histoires de marques, mots de clients
+        {/* « mots de clients » est insécable : la ligne casse après la virgule
+            quand la place manque, jamais entre « mots » et « de clients ». */}
+        <h2 className="max-w-[38ch] text-[22px] font-medium leading-[1.18] tracking-tight text-ink md:text-[32px]">
+          Histoires de marques,{" "}
+          <span className="whitespace-nowrap">mots de clients</span>
         </h2>
       </Reveal>
 
