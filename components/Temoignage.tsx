@@ -112,25 +112,24 @@ export function Temoignage() {
              Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
              révèle. */
           <blockquote className="mt-10 md:mt-14">
-            {/* Tailles fixes par palier plutôt qu'un `clamp` fluide : la
-                hauteur de ligne est ainsi connue, ce qui permet de caler le
-                flottant dessus au pixel près. La taille est portée par le
-                conteneur, sinon `38ch` se calculerait sur 16px et la colonne
-                serait deux fois trop étroite. */}
-            <div className="mx-auto max-w-[38ch] text-[20px] md:text-[27px] lg:text-[32px]">
-              <p className="font-medium leading-[1.24] tracking-tight text-ink">
+            {/* Mêmes valeurs que les paragraphes des cartes « Comment on
+                travaille ensemble » : 17px, interlignage détendu, gris `fog`.
+                La taille est portée par le conteneur, sinon `64ch` se
+                calculerait sur 16px au lieu de 17. */}
+            <div className="mx-auto max-w-[64ch] text-[17px]">
+              <p className="leading-relaxed text-fog">
                 {/* `float` plutôt que position absolue : le texte démarre sur
                     la ligne du guillemet puis reprend toute la largeur dès la
                     suivante. La hauteur est fixée juste sous une ligne
-                    (taille du texte × 1,24, arrondi à l'inférieur) : au-delà,
-                    ne serait-ce que d'une fraction de pixel, le flottant mord
-                    sur la deuxième ligne et la décale. Le glyphe, lui, déborde
-                    volontairement de cette boîte.
+                    (17 × 1,625 = 27,6) : au-delà, ne serait-ce que d'une
+                    fraction de pixel, le flottant mord sur la deuxième ligne
+                    et la décale. Le glyphe, lui, déborde volontairement de
+                    cette boîte.
                     `aria-hidden` car la balise blockquote porte déjà le sens :
                     un lecteur d'écran n'a pas à annoncer un caractère isolé. */}
                 <span
                   aria-hidden
-                  className="float-left mr-3 h-[24px] -translate-y-[10px] text-[76px] leading-none text-signal md:mr-4 md:h-[32px] md:-translate-y-[14px] md:text-[100px] lg:mr-5 lg:h-[39px] lg:-translate-y-[16px] lg:text-[118px]"
+                  className="float-left mr-3 h-[27px] -translate-y-[6px] text-[56px] leading-none text-signal md:mr-4 md:-translate-y-[8px] md:text-[64px]"
                 >
                   &ldquo;
                 </span>
