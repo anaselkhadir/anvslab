@@ -87,6 +87,57 @@ function Pastille({
   );
 }
 
+/**
+ * Segment de rail entre deux pastilles.
+ *
+ * Un rail unique posé sur toute la liste dépassait sous la dernière pastille
+ * — et à droite de la septième en disposition horizontale. Découpé en
+ * segments, il s'arrête exactement au dernier jalon.
+ *
+ * Les dimensions tiennent compte de l'écart entre colonnes : le segment part
+ * du centre d'une pastille et rejoint le centre de la suivante.
+ */
+function Segment({
+  progression,
+  index,
+  reduit,
+  sens,
+}: {
+  progression: MotionValue<number>;
+  index: number;
+  reduit: boolean;
+  sens: "horizontal" | "vertical";
+}) {
+  const remplissage = useTransform(
+    progression,
+    [seuil(index), seuil(index + 1)],
+    [0, 1],
+    { clamp: true },
+  );
+
+  const base =
+    sens === "horizontal"
+      ? "absolute top-[13px] left-[13px] h-px w-[calc(100%+24px)]"
+      : "absolute top-[13px] left-[13px] h-full w-px";
+
+  return (
+    <>
+      <span aria-hidden className={`${base} bg-panel-line`} />
+      <motion.span
+        aria-hidden
+        className={`${base} ${sens === "horizontal" ? "origin-left" : "origin-top"} bg-signal`}
+        style={
+          reduit
+            ? undefined
+            : sens === "horizontal"
+              ? { scaleX: remplissage }
+              : { scaleY: remplissage }
+        }
+      />
+    </>
+  );
+}
+
 function Libelle({ etape }: { etape: (typeof etapes)[number] }) {
   return (
     <>
@@ -125,9 +176,6 @@ export function Method() {
     restDelta: 0.001,
   });
 
-  const largeurRail = useTransform(progression, [0, 1], ["0%", "100%"]);
-  const hauteurRail = largeurRail;
-
   return (
     <section id="methode" className="mx-auto max-w-[1760px] px-6 py-20 md:px-10 md:py-28">
       <Reveal>
@@ -139,19 +187,11 @@ export function Method() {
       <div ref={zone} className="mt-16 md:mt-24">
         {/* ------------------------------------------- frise horizontale */}
         <ol className="relative hidden lg:grid lg:grid-cols-7 lg:gap-6">
-          {/* rail : posé au centre des pastilles, soit 14px du haut */}
-          <span
-            aria-hidden
-            className="absolute top-[13px] right-0 left-0 h-px bg-panel-line"
-          />
-          <motion.span
-            aria-hidden
-            className="absolute top-[13px] left-0 h-px origin-left bg-signal"
-            style={{ width: reduit ? "100%" : largeurRail }}
-          />
-
           {etapes.map((etape, i) => (
             <li key={etape.num} className="relative flex flex-col">
+              {i < etapes.length - 1 && (
+                <Segment progression={progression} index={i} reduit={reduit} sens="horizontal" />
+              )}
               <Pastille progression={progression} index={i} reduit={reduit} />
               <div className="mt-6 pr-4">
                 <Libelle etape={etape} />
@@ -162,18 +202,11 @@ export function Method() {
 
         {/* --------------------------------------------- frise verticale */}
         <ol className="relative lg:hidden">
-          <span
-            aria-hidden
-            className="absolute top-2 bottom-2 left-[13px] w-px bg-panel-line"
-          />
-          <motion.span
-            aria-hidden
-            className="absolute top-2 left-[13px] w-px origin-top bg-signal"
-            style={{ height: reduit ? "100%" : hauteurRail }}
-          />
-
           {etapes.map((etape, i) => (
             <li key={etape.num} className="relative flex gap-5 pb-10 last:pb-0">
+              {i < etapes.length - 1 && (
+                <Segment progression={progression} index={i} reduit={reduit} sens="vertical" />
+              )}
               <Pastille progression={progression} index={i} reduit={reduit} />
               <div className="-mt-1 min-w-0 flex-1">
                 <Libelle etape={etape} />
