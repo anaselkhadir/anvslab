@@ -176,15 +176,22 @@ export function Method() {
     restDelta: 0.001,
   });
 
+  // Haut resserré : le témoignage qui précède porte déjà sa propre marge
+  // basse, et les deux cumulées creusaient un trou entre les sections.
   return (
-    <section id="methode" className="mx-auto max-w-[1760px] px-6 py-20 md:px-10 md:py-28">
+    <section
+      id="methode"
+      className="mx-auto max-w-[1760px] px-6 pb-20 pt-12 md:px-10 md:pb-28 md:pt-16"
+    >
       <Reveal>
-        <h2 className="max-w-[20ch] text-4xl font-medium leading-[1.08] tracking-tight text-ink md:text-6xl">
+        {/* Mêmes valeurs que le titre du témoignage juste au-dessus : les deux
+            sections se suivent, un écart de taille entre elles se voyait. */}
+        <h2 className="max-w-[38ch] text-[22px] font-medium leading-[1.18] tracking-tight text-ink md:text-[32px]">
           Comment on travaille ensemble.
         </h2>
       </Reveal>
 
-      <div ref={zone} className="mt-16 md:mt-24">
+      <div ref={zone} className="mt-12 md:mt-16">
         {/* ------------------------------------------- frise horizontale */}
         <ol className="relative hidden lg:grid lg:grid-cols-7 lg:gap-6">
           {etapes.map((etape, i) => (

@@ -38,7 +38,7 @@ export function Temoignage() {
   if (enAttente && process.env.NODE_ENV !== "development") return null;
 
   return (
-    <section className="mx-auto max-w-[1760px] px-6 pb-20 pt-14 md:px-10 md:pb-28 md:pt-16">
+    <section className="mx-auto max-w-[1760px] px-6 pb-12 pt-14 md:px-10 md:pb-16 md:pt-16">
       {/* Titre dans l'angle haut-gauche de la section, aligné sur la marge de
           la page — pas sur le conteneur resserré qui porte l'avis. */}
       <Reveal>
