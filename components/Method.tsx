@@ -1,100 +1,186 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useReducedMotion } from "motion/react";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+  type MotionValue,
+} from "motion/react";
+import { Check } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const steps = [
+const etapes = [
   {
     num: "01",
-    title: "Planifiez votre appel",
-    desc: "Un échange direct et honnête, sans slides ni blabla. On découvre votre activité, vos objectifs, et là où on peut créer de la valeur le plus vite.",
+    titre: "Cadrage & Premier Échange",
+    detail: "Planification de l'appel initial",
   },
   {
     num: "02",
-    title: "Choisissez votre formule",
-    desc: "Trois formules claires, un prix exact, un calendrier. Rien ne démarre avant votre validation écrite.",
+    titre: "Orientation Artistique & Maquettes",
+    detail: "Création de plusieurs pistes de design au choix",
   },
   {
     num: "03",
-    title: "On construit",
-    desc: "2 à 6 semaines selon le périmètre. Votre site actuel reste en ligne, votre activité continue, vous validez chaque étape.",
+    titre: "Benchmark & Analyse Concurrentielle",
+    detail: "Étude comparative et positionnement actuel",
   },
   {
     num: "04",
-    title: "On reste à bord",
-    desc: "Support technique 12 mois et accompagnement organique 6 mois inclus. Rapports de positions, chiffres, améliorations : l'avance prise ne se referme pas.",
+    titre: "Stratégie Mots-Clés & Intentions",
+    detail: "Ciblage SEO & cartographie des recherches",
+  },
+  {
+    num: "05",
+    titre: "Rédaction, Copywriting & Maillage",
+    detail: "Rédaction persuasive et architecture interne",
+  },
+  {
+    num: "06",
+    titre: "Déploiement & Hébergement",
+    detail: "Mise en ligne et infrastructure technique",
+  },
+  {
+    num: "07",
+    titre: "Monitoring SEO & Suivi d'Avancement",
+    detail: "Analyse des performances et progression du positionnement",
   },
 ];
 
+/** Seuil de progression auquel l'étape `i` s'allume. */
+const seuil = (i: number) => i / (etapes.length - 1);
+
 /**
- * Section épinglée : le scroll vertical fait défiler les cartes
- * horizontalement jusqu'à la dernière, puis la page reprend son cours.
- * Sur mobile et en mouvement réduit : pile verticale classique.
+ * Pastille d'étape. Elle se remplit quand l'avancée du défilement passe son
+ * seuil. Seul le remplissage est animé : le numéro et le libellé restent
+ * lisibles en toutes circonstances, même si l'animation ne démarre pas.
  */
-export function Method() {
-  const wrap = useRef<HTMLElement>(null);
-  const track = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-
-  useEffect(() => {
-    if (reduce || !wrap.current || !track.current) return;
-
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
-      const distance = () => track.current!.scrollWidth - window.innerWidth;
-      const tween = gsap.to(track.current, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrap.current,
-          start: "top top",
-          end: () => `+=${distance()}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-      };
-    });
-    return () => mm.revert();
-  }, [reduce]);
+function Pastille({
+  progression,
+  index,
+  reduit,
+}: {
+  progression: MotionValue<number>;
+  index: number;
+  reduit: boolean;
+}) {
+  const s = seuil(index);
+  // Fondu court juste avant le seuil : l'allumage suit le doigt sans à-coup.
+  const avancee = useTransform(progression, [Math.max(0, s - 0.06), s], [0, 1]);
+  const opacite = reduit ? 1 : avancee;
 
   return (
-    <section id="methode" ref={wrap} className="overflow-hidden">
-      <div className="flex flex-col justify-center gap-10 py-20 md:h-[100svh] md:gap-14 md:py-0">
-        <Reveal className="px-6 md:px-10">
-          <h2 className="max-w-[20ch] text-4xl font-medium leading-[1.08] tracking-tight text-ink md:text-6xl">
-            Comment on travaille ensemble.
-          </h2>
-        </Reveal>
+    <span className="relative flex size-7 shrink-0 items-center justify-center">
+      <span className="absolute inset-0 rounded-full border border-panel-line bg-snow" />
+      <motion.span
+        aria-hidden
+        className="absolute inset-0 rounded-full bg-signal"
+        style={{ opacity: opacite, scale: reduit ? 1 : avancee }}
+      />
+      <motion.span aria-hidden style={{ opacity: opacite }} className="relative text-snow">
+        <Check className="size-3.5" strokeWidth={3} />
+      </motion.span>
+    </span>
+  );
+}
 
-        <div
-          ref={track}
-          className="flex flex-col gap-5 px-6 will-change-transform md:w-max md:flex-row md:px-10"
-        >
-          {steps.map((s) => (
-            <article
-              key={s.num}
-              className="flex min-h-[340px] flex-col rounded-2xl bg-panel p-8 md:h-[54vh] md:w-[44vw] md:shrink-0 md:p-10 lg:w-[38vw]"
-            >
-              <p className="font-mono text-sm text-ink">{s.num}</p>
-              <h3 className="mt-4 text-3xl font-medium tracking-tight text-ink md:text-4xl">
-                {s.title}
-              </h3>
-              <p className="mt-auto max-w-[52ch] pt-16 text-[17px] leading-relaxed text-fog">
-                {s.desc}
-              </p>
-            </article>
+function Libelle({ etape }: { etape: (typeof etapes)[number] }) {
+  return (
+    <>
+      <p className="font-mono text-[12px] tracking-[0.1em] text-dim">
+        Étape {etape.num}
+      </p>
+      <p className="mt-2 text-[15px] leading-snug font-medium text-ink md:text-[16px]">
+        {etape.titre}
+      </p>
+      <p className="mt-1.5 text-[13.5px] leading-relaxed text-fog">{etape.detail}</p>
+    </>
+  );
+}
+
+/**
+ * Frise des étapes. Le rail se remplit à mesure que la section défile et les
+ * pastilles s'allument l'une après l'autre.
+ *
+ * Deux dispositions plutôt qu'une seule acrobatique : rail horizontal à partir
+ * de `lg`, vertical en dessous. Sept étapes aux libellés longs ne tiennent pas
+ * côte à côte sur un écran étroit.
+ */
+export function Method() {
+  const zone = useRef<HTMLDivElement>(null);
+  const reduit = useReducedMotion() ?? false;
+
+  // La frise se remplit entre le moment où elle entre dans l'écran et celui
+  // où elle en atteint le milieu — pas sur toute la hauteur de la page.
+  const { scrollYProgress } = useScroll({
+    target: zone,
+    offset: ["start 0.85", "end 0.55"],
+  });
+  const progression = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
+  const largeurRail = useTransform(progression, [0, 1], ["0%", "100%"]);
+  const hauteurRail = largeurRail;
+
+  return (
+    <section id="methode" className="mx-auto max-w-[1760px] px-6 py-20 md:px-10 md:py-28">
+      <Reveal>
+        <h2 className="max-w-[20ch] text-4xl font-medium leading-[1.08] tracking-tight text-ink md:text-6xl">
+          Comment on travaille ensemble.
+        </h2>
+      </Reveal>
+
+      <div ref={zone} className="mt-16 md:mt-24">
+        {/* ------------------------------------------- frise horizontale */}
+        <ol className="relative hidden lg:grid lg:grid-cols-7 lg:gap-6">
+          {/* rail : posé au centre des pastilles, soit 14px du haut */}
+          <span
+            aria-hidden
+            className="absolute top-[13px] right-0 left-0 h-px bg-panel-line"
+          />
+          <motion.span
+            aria-hidden
+            className="absolute top-[13px] left-0 h-px origin-left bg-signal"
+            style={{ width: reduit ? "100%" : largeurRail }}
+          />
+
+          {etapes.map((etape, i) => (
+            <li key={etape.num} className="relative flex flex-col">
+              <Pastille progression={progression} index={i} reduit={reduit} />
+              <div className="mt-6 pr-4">
+                <Libelle etape={etape} />
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
+
+        {/* --------------------------------------------- frise verticale */}
+        <ol className="relative lg:hidden">
+          <span
+            aria-hidden
+            className="absolute top-2 bottom-2 left-[13px] w-px bg-panel-line"
+          />
+          <motion.span
+            aria-hidden
+            className="absolute top-2 left-[13px] w-px origin-top bg-signal"
+            style={{ height: reduit ? "100%" : hauteurRail }}
+          />
+
+          {etapes.map((etape, i) => (
+            <li key={etape.num} className="relative flex gap-5 pb-10 last:pb-0">
+              <Pastille progression={progression} index={i} reduit={reduit} />
+              <div className="-mt-1 min-w-0 flex-1">
+                <Libelle etape={etape} />
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
