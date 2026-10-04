@@ -8,8 +8,8 @@ import { asset } from "@/lib/base";
  * Témoignage client.
  *
  * Mise en page : titre de section à gauche, puis la ligne d'attribution —
- * portrait et nom à gauche, logo de la marque à droite — et l'avis centré
- * en dessous.
+ * portrait et nom à gauche, logo de la marque à droite — puis l'avis en
+ * paragraphe, ouvert par un grand guillemet dont le texte part.
  *
  * La ligne d'attribution tient sur une seule ligne jusque sur téléphone : les
  * tailles y sont réduites et le logo ne se comprime pas.
@@ -96,7 +96,7 @@ export function Temoignage() {
           />
         </div>
 
-        {/* ------------------------------------------------- l'avis, centré */}
+        {/* -------------------------------------------- l'avis, en paragraphe */}
         {enAttente ? (
           <p className="mx-auto mt-10 max-w-[40ch] text-center text-[clamp(20px,2.2vw,30px)] font-medium leading-[1.25] tracking-tight text-dim md:mt-14">
             Emplacement réservé au témoignage de {temoignage.auteur}. Masqué sur
@@ -111,24 +111,24 @@ export function Temoignage() {
              le texte ne réapparaissait jamais. L'avis restait invisible.
              Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
              révèle. */
-          <blockquote className="mt-24 md:mt-16">
-            {/* Guillemet décoratif suspendu dans la marge, à hauteur de la
-                première ligne. Sur téléphone le texte occupe toute la largeur :
-                il n'y a plus de marge où pendre, le guillemet passe au-dessus.
-                `aria-hidden` car la balise blockquote porte déjà le sens — un
-                lecteur d'écran n'a pas à annoncer un caractère isolé.
-
-                La taille de police est portée par le conteneur : sans elle,
-                `34ch` se calculerait sur 16px et la colonne de texte serait
+          <blockquote className="mt-10 md:mt-14">
+            {/* La taille de police est portée par le conteneur : sans elle,
+                `38ch` se calculerait sur 16px et la colonne de texte serait
                 deux fois trop étroite. */}
-            <div className="relative mx-auto max-w-[34ch] text-[clamp(22px,2.6vw,40px)]">
-              <span
-                aria-hidden
-                className="absolute -top-[76px] left-0 text-[96px] leading-none text-signal md:-left-[76px] md:-top-8 md:text-[160px]"
-              >
-                &ldquo;
-              </span>
-              <p className="text-center font-medium leading-[1.24] tracking-tight text-ink">
+            <div className="mx-auto max-w-[38ch] text-[clamp(22px,2.6vw,40px)]">
+              <p className="font-medium leading-[1.24] tracking-tight text-ink">
+                {/* `float` plutôt que position absolue : le texte démarre sur
+                    la ligne du guillemet puis reprend toute la largeur en
+                    dessous. L'interlignage écrasé contient la hauteur du
+                    flottant — le glyphe déborde de sa boîte, c'est voulu.
+                    `aria-hidden` car la balise blockquote porte déjà le sens :
+                    un lecteur d'écran n'a pas à annoncer un caractère isolé. */}
+                <span
+                  aria-hidden
+                  className="float-left mr-3 text-[80px] leading-[0.46] text-signal md:mr-5 md:text-[130px]"
+                >
+                  &ldquo;
+                </span>
                 {temoignage.citation}
               </p>
             </div>
