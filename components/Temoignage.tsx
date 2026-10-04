@@ -27,6 +27,7 @@ const temoignage = {
   fonction: "Présidente",
   marque: "MADAMOON",
   logo: "/madamoon-logo.png",
+  site: "https://madamoon.fr",
   photo: "/mouna-elachab.jpg" as string | null,
 };
 
@@ -87,13 +88,27 @@ export function Temoignage() {
             </span>
           </figcaption>
 
-          <Image
-            src={asset(temoignage.logo)}
-            alt={temoignage.marque}
-            width={513}
-            height={56}
-            className="h-[10px] w-auto shrink-0 sm:h-[14px] md:h-[20px]"
-          />
+          {/* `aria-label` sur le lien plutôt que de s'en remettre au texte
+              alternatif de l'image : un lecteur d'écran annoncerait sinon
+              « MADAMOON, lien » sans dire où il mène. */}
+          <a
+            href={temoignage.site}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Voir le site de ${temoignage.marque}, nouvelle fenêtre`}
+            /* `py-3` agrandit la zone tactile sans rien déplacer : la rangée
+               est plus haute que le logo, le remplissage n'y change rien. Sans
+               lui la cible ne ferait que 10px de haut sur téléphone. */
+            className="shrink-0 py-3 transition-opacity duration-300 hover:opacity-60"
+          >
+            <Image
+              src={asset(temoignage.logo)}
+              alt={temoignage.marque}
+              width={513}
+              height={56}
+              className="h-[10px] w-auto sm:h-[14px] md:h-[20px]"
+            />
+          </a>
         </div>
 
         {/* -------------------------------------------- l'avis, en paragraphe */}
