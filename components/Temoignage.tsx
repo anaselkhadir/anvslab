@@ -117,7 +117,7 @@ export function Temoignage() {
                 flottant dessus au pixel près. La taille est portée par le
                 conteneur, sinon `38ch` se calculerait sur 16px et la colonne
                 serait deux fois trop étroite. */}
-            <div className="mx-auto max-w-[38ch] text-[22px] md:text-[30px] lg:text-[36px]">
+            <div className="mx-auto max-w-[38ch] text-[20px] md:text-[27px] lg:text-[32px]">
               <p className="font-medium leading-[1.24] tracking-tight text-ink">
                 {/* `float` plutôt que position absolue : le texte démarre sur
                     la ligne du guillemet puis reprend toute la largeur dès la
@@ -130,7 +130,7 @@ export function Temoignage() {
                     un lecteur d'écran n'a pas à annoncer un caractère isolé. */}
                 <span
                   aria-hidden
-                  className="float-left mr-3 h-[26px] text-[80px] leading-none text-signal md:mr-4 md:h-[36px] md:text-[110px] lg:mr-5 lg:h-[43px] lg:text-[130px]"
+                  className="float-left mr-3 h-[24px] -translate-y-[10px] text-[76px] leading-none text-signal md:mr-4 md:h-[32px] md:-translate-y-[14px] md:text-[100px] lg:mr-5 lg:h-[39px] lg:-translate-y-[16px] lg:text-[118px]"
                 >
                   &ldquo;
                 </span>
