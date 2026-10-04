@@ -112,20 +112,25 @@ export function Temoignage() {
              Ici l'élément animé n'est jamais rogné : s'il est à l'écran, il se
              révèle. */
           <blockquote className="mt-10 md:mt-14">
-            {/* La taille de police est portée par le conteneur : sans elle,
-                `38ch` se calculerait sur 16px et la colonne de texte serait
-                deux fois trop étroite. */}
-            <div className="mx-auto max-w-[38ch] text-[clamp(22px,2.6vw,40px)]">
+            {/* Tailles fixes par palier plutôt qu'un `clamp` fluide : la
+                hauteur de ligne est ainsi connue, ce qui permet de caler le
+                flottant dessus au pixel près. La taille est portée par le
+                conteneur, sinon `38ch` se calculerait sur 16px et la colonne
+                serait deux fois trop étroite. */}
+            <div className="mx-auto max-w-[38ch] text-[22px] md:text-[30px] lg:text-[36px]">
               <p className="font-medium leading-[1.24] tracking-tight text-ink">
                 {/* `float` plutôt que position absolue : le texte démarre sur
-                    la ligne du guillemet puis reprend toute la largeur en
-                    dessous. L'interlignage écrasé contient la hauteur du
-                    flottant — le glyphe déborde de sa boîte, c'est voulu.
+                    la ligne du guillemet puis reprend toute la largeur dès la
+                    suivante. La hauteur est fixée juste sous une ligne
+                    (taille du texte × 1,24, arrondi à l'inférieur) : au-delà,
+                    ne serait-ce que d'une fraction de pixel, le flottant mord
+                    sur la deuxième ligne et la décale. Le glyphe, lui, déborde
+                    volontairement de cette boîte.
                     `aria-hidden` car la balise blockquote porte déjà le sens :
                     un lecteur d'écran n'a pas à annoncer un caractère isolé. */}
                 <span
                   aria-hidden
-                  className="float-left mr-3 text-[80px] leading-[0.46] text-signal md:mr-5 md:text-[130px]"
+                  className="float-left mr-3 h-[26px] text-[80px] leading-none text-signal md:mr-4 md:h-[36px] md:text-[110px] lg:mr-5 lg:h-[43px] lg:text-[130px]"
                 >
                   &ldquo;
                 </span>
