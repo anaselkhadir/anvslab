@@ -15,6 +15,16 @@
   --font-mono: var(--font-geist-mono), monospace;
 }
 
+/* Pas de panoramique latéral.
+   `overflow-x: hidden` faisait de `body` un conteneur de défilement
+   horizontal. Chrome n'en tire rien, mais WebKit lui accorde le rebond
+   élastique : sur iPhone, un balayage de côté décalait toute la page et
+   découvrait du blanc avant de revenir. `clip` rogne sans créer de
+   conteneur défilable — il n'y a plus rien à faire rebondir.
+   Posé sur `body` seulement : tant que `html` reste en `visible`, c'est la
+   valeur de `body` qui gouverne le viewport. Déclarer `overflow` sur `html`
+   est justement ce qui casse `position: fixed` sur certaines versions
+   d'iOS. */
 body {
   background: var(--color-snow);
   color: var(--color-ink);
@@ -22,7 +32,18 @@ body {
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Repli pour Safari antérieur à 16, qui ne connaît pas `clip`. Le rebond
+   latéral y subsiste, mais rien ne déborde — c'est une ceinture, pas la
+   correction. Écrit en `@supports` et non comme deux déclarations
+   successives : le minificateur supprime la première des deux. */
+@supports not (overflow: clip) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
 h1,

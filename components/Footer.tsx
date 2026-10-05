@@ -71,7 +71,11 @@ export function Footer() {
 
       {/* Wordmark géant, ton sur ton, coupé par le bord bas */}
       <div className="pointer-events-none mt-20 overflow-hidden md:mt-32" aria-hidden>
-        <p className="-mb-[0.1em] w-full whitespace-nowrap text-center text-[clamp(88px,26vw,610px)] font-medium leading-[0.82] tracking-tight text-white/25 select-none">
+        {/* Plancher à 72px et non 88 : en dessous de 339px de large, 88px
+            rendait le mot plus large que l'écran. Il était rogné par le
+            `overflow-hidden` au-dessus, donc invisible, mais ce conteneur
+            devenait déplaçable au doigt sur iPhone. */}
+        <p className="-mb-[0.1em] w-full whitespace-nowrap text-center text-[clamp(72px,26vw,610px)] font-medium leading-[0.82] tracking-tight text-white/25 select-none">
           Anvslab<span className="align-super text-[0.32em]">®</span>
         </p>
       </div>
