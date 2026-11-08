@@ -1,13 +1,34 @@
 # ANVSLAB
 
-> Studio digital & IA pour PME francophones (France, Maroc). ANVSLAB conçoit des sites nouvelle génération, le référencement Google (SEO) et dans les moteurs génératifs (GEO), des assistants et agents IA, et des systèmes sur mesure. Trois packs tout compris : Initial 799 €, Équilibre 1 499 €, Intense 2 999 €, avec douze mois de support technique et six mois d'accompagnement du trafic organique.
+> Studio digital & IA pour PME francophones (France, Maroc). ANVSLAB conçoit des sites nouvelle génération, le référencement Google (SEO) et dans les moteurs génératifs (GEO), des assistants et agents IA, et des systèmes sur mesure. Trois packs tout compris : Initial 799 €, Équilibre 1 499 €, Intense 2 999 €, avec douze mois de support technique et six mois d'accompagnement du trafic organique. Équipe à Casablanca, clients en France et au Maroc.
 
-## Pages
+## Services
 
-- [Accueil](/) : promesse, méthode, piliers, équipe, tarifs, FAQ.
-- [Réserver un appel](/rendez-vous/) : appel découverte de 15 minutes, sans engagement.
-- [Mentions légales](/mentions-legales/)
-- [Politique de confidentialité](/confidentialite/)
+- [Création de site internet pour PME](/services/creation-site-internet/) : site sur mesure, textes, référencement, fiche Google, dès 799 €.
+- [Référencement naturel (SEO)](/services/seo/) : objectif top 10 écrit dans la proposition, suivi mensuel.
+- [Audit SEO gratuit](/services/seo/audit-seo-gratuit/) : positions, blocages, plan d'action, sans engagement.
+- [Web design](/services/web-design/) : design éditorial sur mesure, mobile d'abord.
+- [GEO, référencement dans les IA](/services/geo-referencement-ia/) : être cité par ChatGPT, Gemini, Perplexity.
+- [Assistants et agents IA pour PME](/services/assistant-ia-pme/) : réponses multicanales, agent téléphonique, rappels.
+
+## Guides
+
+- [Combien coûte un site internet pour une PME ?](/guides/prix-site-internet-pme/)
+- [Prix du référencement naturel](/guides/prix-referencement-naturel/)
+- [SEO ou GEO : que choisir en 2027 ?](/guides/geo-referencement-ia/)
+
+## Métiers
+
+- [Avocat](/secteurs/avocat/), [Artisan](/secteurs/artisan/), [Restaurant](/secteurs/restaurant/), [Agence immobilière](/secteurs/agence-immobiliere/), [Architecte](/secteurs/architecte/), [Coach](/secteurs/coach/), [Expert-comptable](/secteurs/expert-comptable/), [Cabinet dentaire](/secteurs/cabinet-dentaire/)
+
+## Maroc
+
+- [Agence web à Casablanca](/maroc/agence-web-casablanca/)
+- [Agence SEO au Maroc](/maroc/agence-seo-maroc/)
+
+## Autres pages
+
+- [Accueil](/) · [Réserver un appel](/rendez-vous/) · [Mentions légales](/mentions-legales/) · [Confidentialité](/confidentialite/)
 
 ## Contact
 

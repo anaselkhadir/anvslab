@@ -1,4 +1,15 @@
+import Link from "next/link";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
+
+/* Liens vers les pages services : le pilier devient une porte d'entrée. */
+const hrefs: Record<string, string> = {
+  "Sites nouvelle génération": "/services/creation-site-internet/",
+  "SEO, objectif top 10 écrit": "/services/seo/",
+  "GEO : cité par les IA": "/services/geo-referencement-ia/",
+  "Optimisation de conversion": "/services/web-design/",
+  "Assistants IA multicanaux": "/services/assistant-ia-pme/",
+  "Agents téléphoniques IA": "/services/assistant-ia-pme/",
+};
 
 const pillars = [
   {
@@ -62,7 +73,16 @@ export function Pillars() {
                     key={s}
                     className="border-t border-panel-line py-3.5 text-[15px] text-ink last:border-b"
                   >
-                    {s}
+                    {hrefs[s] ? (
+                      <Link
+                        href={hrefs[s]}
+                        className="underline decoration-panel-line underline-offset-4 transition-colors hover:decoration-signal hover:text-signal"
+                      >
+                        {s}
+                      </Link>
+                    ) : (
+                      s
+                    )}
                   </li>
                 ))}
               </ul>

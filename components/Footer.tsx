@@ -9,8 +9,10 @@ import { asset } from "@/lib/base";
 /* Ancres préfixées par « / » : le pied de page sert aussi les pages
    légales, d'où un simple « #services » ne mènerait nulle part. */
 const links = [
-  { label: "Services", href: "/#services" },
-  { label: "Méthode", href: "/#methode" },
+  { label: "Services", href: "/services/" },
+  { label: "Métiers", href: "/secteurs/" },
+  { label: "Guides", href: "/guides/" },
+  { label: "Maroc", href: "/maroc/" },
   { label: "Tarifs", href: "/#tarifs" },
   { label: "FAQ", href: "/#faq" },
 ];
