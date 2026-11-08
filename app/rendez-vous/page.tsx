@@ -5,11 +5,20 @@ import { ArrowLeft } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
 import { Reveal } from "@/components/Reveal";
 import { asset } from "@/lib/base";
+import { absoluteUrl } from "@/lib/site";
+
+const description =
+  "Réservez votre appel découverte de 15 minutes : notre équipe analyse votre présence en ligne et vous recommande la formule la plus adaptée.";
 
 export const metadata: Metadata = {
-  title: "Réserver un appel | ANVSLAB",
-  description:
-    "Réservez votre appel découverte de 15 minutes : notre équipe analyse votre présence en ligne et vous recommande la formule la plus adaptée.",
+  title: "Réserver un appel",
+  description,
+  alternates: { canonical: absoluteUrl("/rendez-vous/") },
+  openGraph: {
+    title: "Réserver un appel | ANVSLAB",
+    description,
+    url: absoluteUrl("/rendez-vous/"),
+  },
   robots: { index: true, follow: true },
 };
 

@@ -39,6 +39,9 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Adresse publique réelle (canoniques, sitemap, JSON-LD). Le jour où
+          # anvslab.com est branché sur Pages, Pages renvoie déjà la bonne URL.
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}${{ steps.pages.outputs.base_path }}
 
       - name: Publier l'artefact
         uses: actions/upload-pages-artifact@v3

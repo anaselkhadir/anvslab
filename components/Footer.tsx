@@ -6,11 +6,18 @@ import { ArrowUpRight } from "lucide-react";
 import { BOOKING_URL } from "@/components/Nav";
 import { asset } from "@/lib/base";
 
+/* Ancres préfixées par « / » : le pied de page sert aussi les pages
+   légales, d'où un simple « #services » ne mènerait nulle part. */
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Méthode", href: "#methode" },
-  { label: "Tarifs", href: "#tarifs" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/#services" },
+  { label: "Méthode", href: "/#methode" },
+  { label: "Tarifs", href: "/#tarifs" },
+  { label: "FAQ", href: "/#faq" },
+];
+
+const legalLinks = [
+  { label: "Mentions légales", href: "/mentions-legales/" },
+  { label: "Confidentialité", href: "/confidentialite/" },
 ];
 
 /** Pied de page signal : liens, hibou, contact, wordmark géant coupé. */
@@ -66,6 +73,18 @@ export function Footer() {
           >
             hello@anvslab.com
           </a>
+          <ul className="flex gap-4">
+            {legalLinks.map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="text-xs text-white/80 transition-opacity duration-300 hover:opacity-70"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

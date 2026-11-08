@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { JsonLd } from "@/components/JsonLd";
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -14,33 +16,56 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://anvslab.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "ANVSLAB | Studio digital & IA pour PME",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "ANVSLAB | Studio digital & IA pour PME",
+    template: "%s | ANVSLAB",
+  },
   description:
     "ANVSLAB construit, étape par étape, l'infrastructure digitale qui transforme les PME ambitieuses en leaders de leur secteur : sites nouvelle génération, SEO, GEO, assistants IA, agents téléphoniques, automatisation, ERP, CRM et logiciels sur mesure.",
+  applicationName: SITE_NAME,
+  authors: [{ name: "Anas Elkhadir" }],
+  creator: SITE_NAME,
   openGraph: {
-    title: "ANVSLAB | Studio digital & IA pour PME",
-    description:
-      "Sites nouvelle génération, SEO, GEO, assistants IA et systèmes sur mesure pour PME francophones.",
-    url: siteUrl,
-    siteName: "ANVSLAB",
+    siteName: SITE_NAME,
     type: "website",
     locale: "fr_FR",
   },
+  twitter: { card: "summary" },
   robots: { index: true, follow: true },
 };
 
-const structuredData = {
+/* Entité ANVSLAB : une seule déclaration, reprise par référence (@id)
+   dans les données structurées des pages. */
+const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "ANVSLAB",
-  url: siteUrl,
+  "@id": absoluteUrl("/#organization"),
+  name: SITE_NAME,
+  legalName: "ANVSLAB LLC",
+  url: absoluteUrl("/"),
+  logo: absoluteUrl("/anvslab-logo-black.png"),
+  email: CONTACT_EMAIL,
   description:
     "Studio digital et IA pour PME francophones : sites nouvelle génération, SEO, GEO, assistants IA, automatisation, ERP, CRM, logiciels sur mesure.",
-  email: "hello@anvslab.com",
+  founder: { "@type": "Person", name: "Anas Elkhadir" },
+  areaServed: [
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "Maroc" },
+  ],
+  knowsLanguage: ["fr"],
+  sameAs: ["https://github.com/anaselkhadir"],
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": absoluteUrl("/#website"),
+  url: absoluteUrl("/"),
+  name: SITE_NAME,
+  inLanguage: "fr",
+  publisher: { "@id": absoluteUrl("/#organization") },
 };
 
 export default function RootLayout({
@@ -49,10 +74,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${geist.variable} ${geistMono.variable}`}>
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <JsonLd data={organization} />
+        <JsonLd data={website} />
         {children}
       </body>
     </html>

@@ -1,0 +1,14 @@
+# ANVSLAB
+
+> Studio digital & IA pour PME francophones (France, Maroc). ANVSLAB conçoit des sites nouvelle génération, le référencement Google (SEO) et dans les moteurs génératifs (GEO), des assistants et agents IA, et des systèmes sur mesure. Trois packs tout compris : Initial 799 €, Équilibre 1 499 €, Intense 2 999 €, avec douze mois de support technique et six mois d'accompagnement du trafic organique.
+
+## Pages
+
+- [Accueil](/) : promesse, méthode, piliers, équipe, tarifs, FAQ.
+- [Réserver un appel](/rendez-vous/) : appel découverte de 15 minutes, sans engagement.
+- [Mentions légales](/mentions-legales/)
+- [Politique de confidentialité](/confidentialite/)
+
+## Contact
+
+- hello@anvslab.com
