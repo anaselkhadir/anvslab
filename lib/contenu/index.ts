@@ -1,10 +1,12 @@
 import type { Hub, Page, TypePage } from "./types";
 import { services } from "./services";
+import { servicesP2 } from "./services-p2";
 import { guides } from "./guides";
+import { guidesP2 } from "./guides-p2";
 import { secteurs } from "./secteurs";
 import { maroc } from "./maroc";
 
-export const PAGES: Page[] = [...services, ...guides, ...secteurs, ...maroc];
+export const PAGES: Page[] = [...services, ...servicesP2, ...guides, ...guidesP2, ...secteurs, ...maroc];
 
 export const HUBS: Hub[] = [
   {

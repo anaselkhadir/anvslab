@@ -10,12 +10,24 @@
 - [Web design](/services/web-design/) : design éditorial sur mesure, mobile d'abord.
 - [GEO, référencement dans les IA](/services/geo-referencement-ia/) : être cité par ChatGPT, Gemini, Perplexity.
 - [Assistants et agents IA pour PME](/services/assistant-ia-pme/) : réponses multicanales, agent téléphonique, rappels.
+- [SEO local et fiche Google](/services/seo/seo-local/) : pack local, avis, pages par ville.
+- [Refonte de site internet](/services/creation-site-internet/refonte/) : inventaire, redirections, même prix que la création.
+- [Site vitrine](/services/creation-site-internet/site-vitrine/) : 5 à 12 pages, 799 € tout compris.
+- [Landing page](/services/creation-site-internet/landing-page/) : une page, une offre, une action.
+- [Site e-commerce](/services/creation-site-internet/site-e-commerce/) : Shopify ou sur mesure, périmètre après audit.
+- [Application web sur mesure](/services/creation-site-internet/application-sur-mesure/) : espaces clients, outils métier, CRM, intégrations.
 
 ## Guides
 
 - [Combien coûte un site internet pour une PME ?](/guides/prix-site-internet-pme/)
 - [Prix du référencement naturel](/guides/prix-referencement-naturel/)
 - [SEO ou GEO : que choisir en 2027 ?](/guides/geo-referencement-ia/)
+- [C'est quoi le SEO ?](/guides/seo/)
+- [Pourquoi mon site n'apparaît pas sur Google ?](/guides/site-invisible-google/)
+- [Web design : UX, UI, tendances 2026](/guides/web-design/)
+- [Pourquoi créer un site internet pour son entreprise ?](/guides/creation-site-internet/)
+- [Comment choisir une agence web : 12 questions](/guides/choisir-une-agence-web/)
+- [Refonte de site internet : quand, pourquoi, Core Web Vitals](/guides/refonte-site-internet/)
 
 ## Métiers
 
